@@ -1,0 +1,12 @@
+.section {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.section-white {
+    background-color: white;
+}
+
+.section-gray {
+    background-color: #F8F9FA;
+}
