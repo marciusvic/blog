@@ -7,14 +7,48 @@
 {% endblock %}
 
 {% block content %}
-<div class="container mt-4">
+<div class="container mt-4 section">
     {% for post in posts %}
-    <div class="section {% cycle 'section-white' 'section-gray' %}">
-        <h2>{{ post.title }}</h2>
-        <h5>{{ post.summary }}</h5>
-        <p>{{ post.content }}</p>
-        <p><small>Publicado em: {{ post.created_at|date:"d F Y \à\s H:i" }}</small></p>
-    </div>
-    {% endfor %}
+        <div class="section post-section {% cycle 'section-white' 'section-gray' %}" data-title="{{ post.title }}" data-summary="{{ post.summary }}" data-content="{{ post.content }}">
+            <h2>{{ post.title }}</h2>
+            <h5>{{ post.summary }}</h5>
+            <p>{{ post.content }}</p>
+            <p><small>Publicado em: {{ post.created_at|date:"d F Y \à\s H:i" }}</small></p>
+        </div>
+{% endfor %}
+
 </div>
+<script>
+    // Seleciona o formulário
+    var form = document.getElementById('searchForm');
+    
+    // Adiciona ouvinte de eventos para o clique no botão
+    document.getElementById('searchButton').addEventListener('click', function(event) {
+        performSearch();
+    });
+    
+    // Adiciona ouvinte de eventos para o envio do formulário (pressionar Enter)
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();  // Prevenir o comportamento padrão de submissão do formulário
+        performSearch();
+    });
+    
+    function performSearch() {
+        var searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        var posts = document.querySelectorAll('.post-section');
+    
+        posts.forEach(function(post) {
+            var title = post.getAttribute('data-title').toLowerCase();
+            var summary = post.getAttribute('data-summary').toLowerCase();
+            var content = post.getAttribute('data-content').toLowerCase();
+            
+            if (title.includes(searchTerm) || summary.includes(searchTerm) || content.includes(searchTerm)) {
+                post.style.display = ''; // mostra o post
+            } else {
+                post.style.display = 'none'; // esconde o post
+            }
+        });
+    }
+</script>
+
 {% endblock %}

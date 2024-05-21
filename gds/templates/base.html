@@ -21,16 +21,18 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">GDS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">BLOG</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">DICAS RÁPIDAS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">BLOG</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/gds">GDS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/consultoria">CONSULTORIA</a></li>
                 </ul>
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar..." aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                {% if showSearch %}
+                <form id="searchForm" class="form-inline">
+                    <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Pesquisar..." aria-label="Search">
+                    <button id="searchButton" class="btn btn-outline-success my-2 my-sm-0" type="button">
                         <i class="fas fa-search"></i>
-                      </button>                      
-                </form>
+                    </button>                      
+                </form>                
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -40,10 +42,19 @@
     </div>
     <footer class="footer">
         <div class="container">
-            <p>Todos os direitos reservados.</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Contato</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-phone"></i> Telefone: +55 84 9613-2287</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-md-right">
+                    <p class="text-white">Todos os direitos reservados &copy; 2024 GDS</p>
+                </div>
+            </div>
         </div>
-    </footer>
-
+    </footer>    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
